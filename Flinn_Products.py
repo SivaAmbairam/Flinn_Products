@@ -81,7 +81,13 @@ if __name__ == '__main__':
                                             inner_data = single_product.find('div', class_='product-page__info--item list col-xs-8')
                                             product_id = inner_data.find('span', class_='code').extract().text.replace('(', '').replace(')', '').strip()
                                             product_names = strip_it(inner_data.text.strip())
-                                            product_name = f'{single_contents['Name']} {product_names}'
+                                            product_name = product_names
+                                            if re.search('Pkg. of \d+', str(product_name)):
+                                                product_quantity = re.search('Pkg. of \d+',
+                                                                             str(product_name)).group().replace(
+                                                    'Pkg. of', '').strip()
+                                            else:
+                                                product_quantity = 1
                                         except:
                                             product_name = ''
                                             product_id = ''
@@ -176,7 +182,12 @@ if __name__ == '__main__':
                                                 inner_data = single_product.find('div', class_='product-page__info--item list col-xs-8')
                                                 product_id = inner_data.find('span', class_='code').extract().text.replace('(', '').replace(')', '').strip()
                                                 product_names = strip_it(inner_data.text.strip())
-                                                product_name = f'{single_contents['Name']} {product_names}'
+                                                product_name = product_names
+                                                if re.search('Pkg. of \d+', str(product_name)):
+                                                    product_quantity = re.search('Pkg. of \d+', str(product_name)).group().replace(
+                                                        'Pkg. of', '').strip()
+                                                else:
+                                                    product_quantity = 1
                                             except:
                                                 product_name = ''
                                                 product_id = ''
@@ -263,7 +274,12 @@ if __name__ == '__main__':
                                     inner_data = single_product.find('div', class_='product-page__info--item list col-xs-8')
                                     product_id = inner_data.find('span', class_='code').extract().text.replace('(','').replace(')', '').strip()
                                     product_names = strip_it(inner_data.text.strip())
-                                    product_name = f'{single_contents['Name']} {product_names}'
+                                    product_name = product_names
+                                    if re.search('Pkg. of \d+', str(product_name)):
+                                        product_quantity = re.search('Pkg. of \d+', str(product_name)).group().replace(
+                                            'Pkg. of', '').strip()
+                                    else:
+                                        product_quantity = 1
                                 except:
                                     product_name = ''
                                     product_id = ''
